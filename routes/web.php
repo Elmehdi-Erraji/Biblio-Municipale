@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,3 +29,7 @@ Route::get('/admin',function(){
 Route::get('/client',function(){
     return view('client');
 })->name('client')->middleware('client');
+
+
+
+

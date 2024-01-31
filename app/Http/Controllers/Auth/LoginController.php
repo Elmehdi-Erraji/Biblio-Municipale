@@ -58,6 +58,11 @@ class LoginController extends Controller
      */
     protected function sendLockoutResponse(Request $request)
     {
-        return redirect('/logingg')->with('error', 'Too many login attempts. Please try again later.');
+        return redirect('/login')->with('error', 'Too many login attempts. Please try again later.');
+    }
+
+    public function login()
+    {
+        return view('login');
     }
 }
