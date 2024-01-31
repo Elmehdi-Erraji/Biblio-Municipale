@@ -36,7 +36,7 @@
                                     <i class="ri-group-2-line widget-icon"></i>
                                 </div>
                                 <h6 class="text-uppercase mt-0" title="Customers">Users</h6>
-                                <h2 class="my-2">7</h2>
+                                <h2 class="my-2">$</h2>
 
                             </div>
                         </div>

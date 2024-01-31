@@ -66,4 +66,9 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('users.index')->with('success', 'User deleted successfully');
     }
+
+    // public function CountUsers(){
+    //     $count = User::count();
+    //     return view('users.index', compact('count'));
+    // }
 }

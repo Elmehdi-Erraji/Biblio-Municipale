@@ -38,7 +38,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-12">
                                         <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST" id="updateUserForm">
                                             @csrf
                                             @method('PUT') <!-- Use the PUT method for update -->

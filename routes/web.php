@@ -41,13 +41,13 @@ Route::get('/profile',function(){
 
  Route::resource('users', UserController::class);
  
-  
+//  Route::get('users.index', [UserController::class, 'CountUsers'])->name('count');
 
 
 
 
-Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+// Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('books', BookController::class);
-    Route::get('books/{book}/restore', [BookController::class, 'restore'])->name('books.restore');
-});
+    Route::post('books/{book}/restore', [BookController::class, 'restore'])->name('books.restore');
+// });
 

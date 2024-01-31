@@ -11,7 +11,7 @@ class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::all();
+        $books = Book::withTrashed()->get();
         return view('admin.books.index', compact('books'));
     }
 
@@ -28,10 +28,14 @@ class BookController extends Controller
             'genre' => 'required',
             'description' => 'required',
             'published_at' => 'required',
-            'totalCopies' => 'required',
-            'availableCopies' => 'required',
+            'totalCopies' => 'required|integer|min:1',
+            'availableCopies' => 'required|integer|min:1|max:'. $request->input('totalCopies'),
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        ],[
+            'availableCopies.max' => 'The available copies must not be greater than total copies.',
+            'published_at.before_or_equal' => 'The published date must not be in the future.',
+        ]
+    );
 
         // Handle image upload
         if ($request->hasFile('image')) {
@@ -41,7 +45,7 @@ class BookController extends Controller
 
         Book::create($request->all());
 
-        return redirect()->route('admin.books.index')->with('success', 'Book created successfully');
+        return redirect()->route('books.index')->with('success', 'Book created successfully');
     }
 
     public function show(Book $book)
@@ -79,14 +83,14 @@ class BookController extends Controller
 
         $book->update($request->all());
 
-        return redirect()->route('admin.books.index')->with('success', 'Book updated successfully');
+        return redirect()->route('books.index')->with('success', 'Book updated successfully');
     }
 
     public function destroy(Book $book)
     {
         // Soft delete the book
         $book->delete();
-        return redirect()->route('admin.books.index')->with('success', 'Book deleted successfully');
+        return redirect()->route('books.index')->with('success', 'Book deleted successfully');
     }
 
     public function delete(Book $book)
@@ -98,6 +102,6 @@ class BookController extends Controller
     {
         $book = Book::withTrashed()->find($id);
         $book->restore();
-        return redirect()->route('admin.books.index')->with('success', 'Book restored successfully');
+        return redirect()->route('books.index')->with('success', 'Book restored successfully');
     }
 }
