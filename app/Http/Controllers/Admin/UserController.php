@@ -27,11 +27,14 @@ class UserController extends Controller
             'phone' => 'required',
             'role' => 'required',
             'password' => 'required|min:8',
+            'confirmPassword' => 'required|same:password',
         ]);
+
+      
 
         User::create($request->all());
 
-        return redirect()->route('admin.users.index')->with('success', 'User created successfully');
+        return redirect()->route('users.index')->with('success', 'User created successfully');
     }
 
     public function show(User $user)

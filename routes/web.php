@@ -39,17 +39,15 @@ Route::get('/profile',function(){
 
 
 
-Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
-    Route::resource('users', UserController::class);
-});
-
+ Route::resource('users', UserController::class);
+ 
+  
 
 
 
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('books', BookController::class);
-    Route::get('books/{book}/delete', [BookController::class, 'delete'])->name('books.delete');
     Route::get('books/{book}/restore', [BookController::class, 'restore'])->name('books.restore');
 });
 
