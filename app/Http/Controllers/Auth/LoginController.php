@@ -41,9 +41,9 @@ class LoginController extends Controller
 
         switch ($userRole) {
             case 1:
-                return redirect('/admin');
+                return redirect('admin.admin');
             case 2:
-                return redirect('/client');
+                return redirect('client.profile');
             default:
                 Auth::logout();
                 return redirect('/login')->with('error', 'Something went wrong');

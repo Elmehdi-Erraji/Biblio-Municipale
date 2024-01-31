@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\BookController;
+use App\Http\Controllers\Admin\BookController;
+use App\Http\Controllers\Admin\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,20 +24,38 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/admin',function(){
-    return view('admin');
+    return view('admin.admin');
 })->name('admin')->middleware('admin');
 
-Route::get('/client',function(){
-    return view('client');
-})->name('client')->middleware('client');
+Route::get('/profile',function(){
+    return view('client.profile');
+})->name('profile')->middleware('client');
 
 
 
-Route::resource('books',BookController::class);
-
-Route::get('books/{book}/delete',[BookController::class,'delete'])->name('books.delete');
-Route::get('books/{book}/restore',[BookController::class,'restore'])->name('books.restore');
 
 
 
+
+
+
+
+
+
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    Route::resource('users', UserController::class);
+});
+
+
+
+
+
+
+
+
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    Route::resource('books', BookController::class);
+    Route::get('books/{book}/delete', [BookController::class, 'delete'])->name('books.delete');
+    Route::get('books/{book}/restore', [BookController::class, 'restore'])->name('books.restore');
+});
 
