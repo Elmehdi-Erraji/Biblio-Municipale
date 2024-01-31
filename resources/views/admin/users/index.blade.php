@@ -91,8 +91,12 @@
                                                         </td>
                                                         
                                                         <td>
-                                                            <a href="" class="btn btn-danger">Delete</a>
-                                                            <a href="" class="btn btn-info">Update</a>
+                                                            <a href="{{route ('users.edit',$user->id)}}" class="btn btn-info">Update</a>
+                                                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline-block;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 @endforeach
