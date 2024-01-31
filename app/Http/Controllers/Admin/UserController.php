@@ -51,10 +51,9 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'phone' => 'required',
+            
             'role' => 'required',
-            'password' => 'nullable|min:8',
+            
         ]);
 
         $user->update($request->all());
