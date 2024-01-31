@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Contracts\Service\Attribute\Required;
 
 class LoginController extends Controller
 {
@@ -33,7 +32,7 @@ class LoginController extends Controller
      * Handle a login request to the application.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     protected function authenticated(Request $request, $user)
     {
@@ -41,9 +40,9 @@ class LoginController extends Controller
 
         switch ($userRole) {
             case 1:
-                return redirect('admin.admin');
+                return redirect()->route('admin'); // Corrected route function
             case 2:
-                return redirect('client.profile');
+                return redirect()->route('profile'); // Corrected route function
             default:
                 Auth::logout();
                 return redirect('/login')->with('error', 'Something went wrong');
@@ -61,8 +60,13 @@ class LoginController extends Controller
         return redirect('/login')->with('error', 'Too many login attempts. Please try again later.');
     }
 
-    public function login()
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showLoginForm()
     {
-        return view('login');
+        return view('auth.login');
     }
 }
