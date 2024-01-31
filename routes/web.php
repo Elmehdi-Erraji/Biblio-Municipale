@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BookController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +29,13 @@ Route::get('/admin',function(){
 Route::get('/client',function(){
     return view('client');
 })->name('client')->middleware('client');
+
+
+
+Route::resource('books',BookController::class);
+
+Route::get('books/{book}/delete',[BookController::class,'delete'])->name('books.delete');
+Route::get('books/{book}/restore',[BookController::class,'restore'])->name('books.restore');
 
 
 
