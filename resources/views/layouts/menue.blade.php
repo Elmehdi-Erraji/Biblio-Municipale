@@ -82,9 +82,9 @@
                 </a>
                 <div class="collapse" id="sidebarServices">
                     <ul class="side-nav-second-level">
-                       
+                        
                         <li>
-                            <a href="reservations-list.php">Reservations List</a>
+                            <a href="{{route('reservations.index')}}">Reservations List</a>
                         </li>
                     </ul>
                 </div>

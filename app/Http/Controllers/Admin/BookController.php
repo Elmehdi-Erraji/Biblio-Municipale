@@ -14,6 +14,11 @@ class BookController extends Controller
         $books = Book::withTrashed()->get();
         return view('admin.books.index', compact('books'));
     }
+    public function profil()
+    {
+        $books = Book::withTrashed()->get();
+        return view('client.profile', compact('books'));
+    }
 
     public function create()
     {

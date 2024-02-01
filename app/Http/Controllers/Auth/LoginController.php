@@ -42,7 +42,7 @@ class LoginController extends Controller
             case 1:
                 return redirect()->route('users.index'); // Corrected route function
             case 2:
-                return redirect()->route('profile'); // Corrected route function
+                return redirect()->route('dash'); // Corrected route function
             default:
                 Auth::logout();
                 return redirect('/login')->with('error', 'Something went wrong');

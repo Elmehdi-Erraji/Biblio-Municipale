@@ -19,11 +19,11 @@
 <body>
 
 <!-- ========== Header Start ========== -->
-@include('layouts.header')
+@include('layouts.header1')
 <!-- ========== Header End ========== -->
 
 <!-- ========== Sidebar Start ========== -->
-@include('layouts.menue')
+@include('layouts.menue1')
 <!-- ========== Sidebar End ========== -->
 
 <!-- Content -->

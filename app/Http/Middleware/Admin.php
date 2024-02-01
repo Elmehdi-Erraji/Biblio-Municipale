@@ -24,7 +24,7 @@ class Admin
         if($user->role == 1){
             return $next($request);
         }elseif($user->role == 2){
-            return redirect('/profile');
+            return redirect('/dash');
        }else{
         return abort(403,'Unauthorized');
        }

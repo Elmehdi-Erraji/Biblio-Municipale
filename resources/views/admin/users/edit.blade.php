@@ -41,7 +41,7 @@
                                     <div class="col-12">
                                         <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST" id="updateUserForm">
                                             @csrf
-                                            @method('PUT') <!-- Use the PUT method for update -->
+                                            @method('PUT') 
 
                                             <!-- Name -->
                                             <div class="row mb-3">
