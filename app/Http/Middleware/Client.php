@@ -24,7 +24,7 @@ class Client
         if($user->role == 2){
             return $next($request);
         }elseif($user->role == 1){
-            return redirect('/admin');
+            return redirect('admin/users');
        }else{
         return abort(403,'Unauthorized');
        }

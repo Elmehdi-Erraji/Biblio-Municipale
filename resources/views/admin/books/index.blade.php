@@ -36,7 +36,7 @@
                                     <i class="ri-book-2-line widget-icon"></i>
                                 </div>
                                 <h6 class="text-uppercase mt-0" title="Customers">Books</h6>
-                                <h2 class="my-2">4</h2>
+                                <h2 class="my-2">err</h2>
 
                             </div>
                         </div>
@@ -101,7 +101,13 @@
                                                         <td>{{ $book->published_at->format('d-m-Y') }}</td>
                                                         <td>{{ $book->totalCopies }}</td>
                                                         <td>{{ $book->availableCopies }}</td>
-                                                        <td>{{ $book->deleted_at ? 'Yes' : 'No' }}</td>
+                                                        <td>
+                                                            @if ($book->deleted_at)
+                                                                <span class="badge bg-pink-subtle text-pink">Been Deleted</span>
+                                                            @else
+                                                                <span class="badge bg-info-subtle text-info">Exist</span>
+                                                            @endif
+                                                        </td>
                                                         <td>
                                                             <a href="{{ route('books.edit', $book->id) }}" class="btn btn-info">Update</a>
                                                             <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display: inline-block;">

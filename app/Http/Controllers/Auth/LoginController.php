@@ -40,7 +40,7 @@ class LoginController extends Controller
 
         switch ($userRole) {
             case 1:
-                return redirect()->route('admin'); // Corrected route function
+                return redirect()->route('users.index'); // Corrected route function
             case 2:
                 return redirect()->route('profile'); // Corrected route function
             default:

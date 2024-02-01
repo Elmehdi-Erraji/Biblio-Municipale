@@ -27,9 +27,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/admin',function(){
-    return view('admin.admin');
-})->name('admin')->middleware('admin');
 
 Route::get('/profile',function(){
     return view('client.profile');
@@ -39,7 +36,7 @@ Route::get('/profile',function(){
 
 
 
- Route::resource('users', UserController::class);
+ Route::resource('admin/users', UserController::class);
  
 //  Route::get('users.index', [UserController::class, 'CountUsers'])->name('count');
 

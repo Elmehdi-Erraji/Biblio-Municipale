@@ -32,7 +32,7 @@
     
           
                 <li class="side-nav-item">
-                <a href="{{ route('admin') }}" class="side-nav-link">
+                <a href="{{ route('users.index') }}" class="side-nav-link">
                     <i class="ri-dashboard-3-line"></i>
                     <span> Dashboard </span>
                 </a>
