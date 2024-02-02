@@ -64,7 +64,7 @@
 
                             <div id="errorMessages" style="color: red;"></div>
 
-                            <form id="reservationForm" method="post" action="{{route('client.store')}}">
+                            <form id="reservationForm" method="post" action="{{route('clients.store')}}">
                                 @csrf
                             <input type="hidden" id="bookIdInput" name="bookId" value="">
                             <input type="hidden" id="" name="user_id" value="{{auth()->user()->id}}">
@@ -175,4 +175,4 @@
         </script> © Mehdi
     </span>
 </footer>
-@endsection
+@endsection 

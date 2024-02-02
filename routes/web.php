@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\Client\ClientController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ReservationController;
 
-use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,9 +43,11 @@ Auth::routes();
 
 
 // Client rooutes start
- Route::get('/dash',function(){
-    return view('client.dash');
- })->name('dash')->middleware('client');
+//  Route::get('/dash',function(){
+//     return view('client.dash');
+// });
 
- Route::resource('dash', ClientController::class);
+Route::get('dash', [ClientController::class,'index']);
+
+//  Route::resource('clients', ClientController::class);
  // Client rooutes end
