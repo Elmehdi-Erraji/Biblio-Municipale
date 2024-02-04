@@ -40,18 +40,4 @@ class ClientController extends Controller
      }
 
      
-
-     public function destroy(Reservation $reservation)
-    {
-        // Check if the authenticated user is the owner of the reservation
-        if (Auth::user()->id === $reservation->user_id) {
-            // Client logic for reservation deletion (only allow clients to delete their own reservations)
-            $reservation->delete();
-            return redirect()->route('profile')->with('success', 'Reservation deleted successfully');
-        } else {
-            // Unauthorized attempt to delete reservation
-            return redirect()->route('profile')->with('error', 'Unauthorized attempt to delete reservation');
-        }
-    }
-  
 }
