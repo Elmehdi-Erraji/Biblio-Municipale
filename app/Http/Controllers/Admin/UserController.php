@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\Models\Book;
 use App\Models\Reservation;
 use App\Models\User;
@@ -24,21 +25,10 @@ class UserController extends Controller
         return view('admin.users.create');
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'phone' => 'required',
-            'role' => 'required',
-            'password' => 'required|min:8',
-            'confirmPassword' => 'required|same:password',
-        ]);
-
-      
-
+        
         User::create($request->all());
-
         return redirect()->route('users.index')->with('success', 'User created successfully');
     }
 
@@ -52,14 +42,8 @@ class UserController extends Controller
         return view('admin.users.edit', compact('user'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
-        $request->validate([
-            'name' => 'required',
-            'role' => 'required',
-            
-        ]);
-
         $user->update($request->all());
 
         return redirect()->route('users.index')->with('success', 'User updated successfully');

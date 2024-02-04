@@ -11,7 +11,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/icon.css') }}" rel="stylesheet">
 
-    <title>{{ config('app.name', 'Bookie') }}</title>
+    <title>Bookie</title>
 
    
 </head>

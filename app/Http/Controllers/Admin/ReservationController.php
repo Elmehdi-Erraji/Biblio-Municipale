@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ReservationRequest;
 use App\Models\Book;
 use App\Models\Reservation;
 use App\Models\User;
@@ -22,14 +23,8 @@ class ReservationController extends Controller
         return view('.create', compact('users','books'));
     }
 
-    public function store(Request $request){
+    public function store(ReservationRequest $request){
 
-
-      $request->validate([
-        'reservation_date' => 'required|date',
-        'return_date' => 'nullable|date',
-    ]);
-    
     Reservation::create($request->all());
     
     return redirect()->route('client/dash')->with('success','Reservation created successfully');
@@ -39,20 +34,11 @@ class ReservationController extends Controller
     public function edit(Reservation $reservation){
         $users = User::all();
         $books = Book::all();
- 
 
         return view('admin.reservations.edit', compact('reservation','users','books'));
     }
 
-    public function update(Request $request, Reservation $reservation){
-
-        $request->validate([
-                       
-            'reservation_date' => 'required|date',
-            'return_date' => 'nullable|date',
-            'is_returned' => 'required',
-            
-        ]);
+    public function update(ReservationRequest $request, Reservation $reservation){
 
         $reservation->update($request->all());
         return redirect()->route('reservations.index')->with('success','Reservation updated successfully');

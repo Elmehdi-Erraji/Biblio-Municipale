@@ -36,19 +36,8 @@
                             <div class="card-body p-0">
 
                                 <div class="p-3">
-                                    <div class="card-widgets">
-                                        <a data-bs-toggle="collapse" href="#yearly-sales-collapse" role="button" aria-expanded="false" aria-controls="yearly-sales-collapse"><i class="ri-subtract-line"></i></a>
-                                        <a href="#" data-bs-toggle="remove"><i class="ri-close-line"></i></a>
-                                    </div>
+                                    
                                    
-                                    <div class="app-search d-none d-lg-block">
-                                        <form style="width: 40%;" id="searchForm">
-                                            <div class="input-group">
-                                                <input type="search" class="form-control" placeholder="Search..." id="searchInput">
-                                                <span class="ri-search-line search-icon text-muted"></span>
-                                            </div>
-                                        </form>
-                                    </div>
                                 </div>
 
 
