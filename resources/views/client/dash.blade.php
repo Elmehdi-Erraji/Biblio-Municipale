@@ -8,8 +8,8 @@
    
 
 
-        <div class="content-page">
-            <div class="content">
+      
+            <div class="content" style="padding-left: 10%; padding-right: 2%;
 
                 <!-- Start Content-->
                 <div class="container-fluid">
@@ -20,7 +20,7 @@
 
                     <div class="row">
                         @foreach($books as $book)
-                            <div class="col-sm-6"style="width : 50%">
+                            <div class="col-sm-6"style="width : 30%">
                                 <div class="card card-body">
                                     <h4 class="card-title">{{$book->title}}</h4>
                                     <p class="card-text"><strong>Id:</strong> {{$book->id}}</p>
@@ -33,7 +33,7 @@
                                     <a href="javascript:void(0);" class="btn btn-primary" onclick="openModal('{{$book->id}}','{{$book->title}}', '{{$book->author}}', '{{$book->genre}}','{{$book->description}}', '{{$book->published_at}}', '{{$book->totalCopies}}', '{{$book->availableCopies}}')" style="width: 35%">Reserve This book</a>
                                 </div>
                             </div>
-                            @if($loop->iteration % 2 == 0)
+                            @if($loop->iteration % 3 == 0)
                                 </div><div class="row">
                             @endif
                         @endforeach
@@ -127,8 +127,6 @@
                 </div>
             </footer>
             <!-- end Footer -->
-
-        </div>
 
         <!-- ============================================================== -->
         <!-- End Page content -->

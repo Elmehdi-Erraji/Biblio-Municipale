@@ -14,7 +14,17 @@ class Reservation extends Model
         'user_id', 'book_id', 'is_returned', 'reservation_date', 'return_date',
     ];
 
-    
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($reservation) {
+            $reservation->book->decrementAvailableCopies();
+        });
+        static::deleting(function ($reservation) {
+            $reservation->book->increment('availableCopies');
+        });
+    }
 
     public function user()
     {

@@ -56,7 +56,6 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            
             'role' => 'required',
             
         ]);

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class ClientController extends Controller
 {
     public function index (){
-        $books = Book::all();
+        $books = Book::where('availableCopies', '>=', 1)->get();
         return view('client.dash', compact('books'));
     }
 
@@ -35,7 +35,7 @@ class ClientController extends Controller
       ]);
       
       Reservation::create($request->all());
-      return redirect()->route('dash')->with('success','Reservation created successfully');
+      return redirect()->route('profile')->with('success','Reservation created successfully');
       
      }
 

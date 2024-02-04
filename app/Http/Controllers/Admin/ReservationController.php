@@ -23,6 +23,8 @@ class ReservationController extends Controller
     }
 
     public function store(Request $request){
+
+
       $request->validate([
         'reservation_date' => 'required|date',
         'return_date' => 'nullable|date',
@@ -61,7 +63,7 @@ class ReservationController extends Controller
 
         $roleId = auth()->user()->role;
         $reservation->delete();
-    
+   
         if ($roleId == 1) {
             return redirect()->route('reservations.index')->with('success', 'Reservation deleted successfully');
         } elseif ($roleId == 2) {

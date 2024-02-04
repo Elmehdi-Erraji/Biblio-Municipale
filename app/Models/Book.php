@@ -26,6 +26,14 @@ class Book extends Model
         'image',
     ];
 
+    public function decrementAvailableCopies()
+    {
+        if ($this->availableCopies > 0) {
+            $this->availableCopies -= 1;
+            $this->save();
+        }
+    }
+
     /**
      * The attributes that should be cast.
      *
