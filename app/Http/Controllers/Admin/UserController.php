@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Book;
+use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class UserController extends Controller
         $users = User::all();
         $count = User::count();
         $book = Book::count();
-        return view('admin.admin', compact('users','count','book'));
+        $rescount = Reservation::count();
+        return view('admin.admin', compact('users','count','book','rescount'));
     }   
 
     public function create()

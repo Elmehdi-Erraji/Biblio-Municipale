@@ -18,8 +18,8 @@ class ReservationController extends Controller
 
     public function create(){
         $users = User::all();
-        $Books = Book::all();
-        return view('reservations.create', compact('users','books'));
+        $books = Book::all();
+        return view('.create', compact('users','books'));
     }
 
     public function store(Request $request){
@@ -36,18 +36,19 @@ class ReservationController extends Controller
     public function edit(Reservation $reservation){
         $users = User::all();
         $books = Book::all();
+ 
 
-        return view('reservation.edit', compact('reservation','users','book'));
+        return view('admin.reservations.edit', compact('reservation','users','books'));
     }
 
     public function update(Request $request, Reservation $reservation){
 
         $request->validate([
-            'user_id' => 'required',
-            'book_id' => 'required',
-            'is_returned' => 'required|boolean',
+                       
             'reservation_date' => 'required|date',
             'return_date' => 'nullable|date',
+            'is_returned' => 'required',
+            
         ]);
 
         $reservation->update($request->all());

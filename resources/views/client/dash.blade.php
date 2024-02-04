@@ -5,7 +5,7 @@
 @section('content')
 
 <body>
-    <div class="wrapper">
+   
 
 
         <div class="content-page">
@@ -20,21 +20,23 @@
 
                     <div class="row">
                         @foreach($books as $book)
-                            <div class="col-sm-6">
+                            <div class="col-sm-6"style="width : 50%">
                                 <div class="card card-body">
-                                    <h4 class="card-title"></h4>
-                                    <p class="card-text"><strong>Id:{{$book->id}}</p>
-                                    <p class="card-text"><strong>title:{{$book->title}}</p>
-                                    <p class="card-text"><strong>Author:{{$book->author}}</p>
-                                    <p class="card-text"><strong>Genre:{{$book->genre}}</p>
-                                    <p class="card-text"><strong>Description:{{$book->description}}</p>
-                                    <p class="card-text"><strong>Publication Year:{{$book->published_at}}</p>
-                                    <p class="card-text"><strong>Total Copies:{{$book->totalCopies}}</p>
-                                    <p class="card-text"><strong>Available Copies:{{$book->availableCopies}}</p>
-                                    <a href="javascript:void(0);" class="btn btn-primary" onclick="openModal('{{$book->id}}','{{$book->title}}', '{{$book->author}}', '{{$book->genre}}','{{$book->description}}', '{{$book->published_at}}', '{{$book->totalCopies}}', '{{$book->availableCopies}}')">Reserve This book</a>
+                                    <h4 class="card-title">{{$book->title}}</h4>
+                                    <p class="card-text"><strong>Id:</strong> {{$book->id}}</p>
+                                    <p class="card-text"><strong>Author:</strong> {{$book->author}}</p>
+                                    <p class="card-text"><strong>Genre:</strong> {{$book->genre}}</p>
+                                    <p class="card-text"><strong>Description:</strong> {{$book->description}}</p>
+                                    <p class="card-text"><strong>Publication Date:</strong> {{$book->published_at->format('Y-m-d')}}</p>
+                                    <p class="card-text"><strong>Total Copies:</strong> {{$book->totalCopies}}</p>
+                                    <p class="card-text"><strong>Available Copies:</strong> {{$book->availableCopies}}</p>
+                                    <a href="javascript:void(0);" class="btn btn-primary" onclick="openModal('{{$book->id}}','{{$book->title}}', '{{$book->author}}', '{{$book->genre}}','{{$book->description}}', '{{$book->published_at}}', '{{$book->totalCopies}}', '{{$book->availableCopies}}')" style="width: 35%">Reserve This book</a>
                                 </div>
                             </div>
-                         @endforeach
+                            @if($loop->iteration % 2 == 0)
+                                </div><div class="row">
+                            @endif
+                        @endforeach
                     </div>
                     <!-- Books show end -->
 
@@ -72,12 +74,18 @@
                             
                                 <div class="mb-3">
                                     <label for="reservationDate" class="form-label">Reservation Date</label>
-                                    <input class="form-control" type="date" id="reservationDate" name="reservation_date" required>
+                                    <input class="form-control" type="date" id="reservationDate" name="reservation_date" >
+                                    @error('reservation_date')
+                                        <div class="text-danger">{{$message}}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="returnDate" class="form-label">Return Date (Max 20 days from reservation)</label>
-                                    <input class="form-control" type="date" id="returnDate" name="return_date" required>
+                                    <input class="form-control" type="date" id="returnDate" name="return_date" >
+                                    @error('return_date')
+                                        <div class="text-danger">{{$message}}</div>
+                                    @enderror
                                 </div>
 
                                 <button type="submit" id="reserveButton" class="btn btn-primary">Reserve Book</button>
@@ -100,47 +108,47 @@
 
                     $('#reserve-modal').modal('show'); // Show the modal
 
-                    // Handle reservation button click
-                    document.getElementById('reserveButton').addEventListener('click', function() {
-                        const reservationDate = document.getElementById('reservationDate').value;
-                        const returnDate = document.getElementById('returnDate').value;
+                    // // Handle reservation button click
+                    // document.getElementById('reserveButton').addEventListener('click', function() {
+                    //     const reservationDate = document.getElementById('reservationDate').value;
+                    //     const returnDate = document.getElementById('returnDate').value;
 
-                        // Perform date verification
-                        const today = new Date();
-                        const selectedResDate = new Date(reservationDate);
-                        const selectedRetDate = new Date(returnDate);
+                    //     // Perform date verification
+                    //     const today = new Date();
+                    //     const selectedResDate = new Date(reservationDate);
+                    //     const selectedRetDate = new Date(returnDate);
 
-                        // Check if reservation date is in the past
-                        if (selectedResDate < today) {
-                            document.getElementById('errorMessages').innerText = 'Please choose a reservation date in the future.';
-                            return;
-                        }
+                    //     // Check if reservation date is in the past
+                    //     if (selectedResDate < today) {
+                    //         document.getElementById('errorMessages').innerText = 'Please choose a reservation date in the future.';
+                    //         return;
+                    //     }
 
-                        // Check if return date is after reservation date
-                        if (selectedResDate >= selectedRetDate) {
-                            document.getElementById('errorMessages').innerText = 'Return date must be after the reservation date.';
-                            return;
-                        }
+                    //     // Check if return date is after reservation date
+                    //     if (selectedResDate >= selectedRetDate) {
+                    //         document.getElementById('errorMessages').innerText = 'Return date must be after the reservation date.';
+                    //         return;
+                    //     }
 
-                        // Calculate the difference in days between reservation and return dates
-                        const timeDiff = Math.abs(selectedRetDate - selectedResDate);
-                        const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+                    //     // Calculate the difference in days between reservation and return dates
+                    //     const timeDiff = Math.abs(selectedRetDate - selectedResDate);
+                    //     const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
-                        // Check if return date is beyond the limit (20 days)
-                        if (diffDays > 20) {
-                            document.getElementById('errorMessages').innerText = 'Return date exceeds the maximum limit of 20 days from the reservation date.';
-                            return;
-                        }
+                    //     // Check if return date is beyond the limit (20 days)
+                    //     if (diffDays > 20) {
+                    //         document.getElementById('errorMessages').innerText = 'Return date exceeds the maximum limit of 20 days from the reservation date.';
+                    //         return;
+                    //     }
 
-                        // Here, you can proceed with the reservation process
-                        console.log('Reservation Date:', reservationDate);
-                        console.log('Return Date:', returnDate);
-                    });
+                    //     // Here, you can proceed with the reservation process
+                    //     console.log('Reservation Date:', reservationDate);
+                    //     console.log('Return Date:', returnDate);
+                    // });
 
-                    // Clear error messages when the modal is closed
-                    $('#reserve-modal').on('hidden.bs.modal', function() {
-                        document.getElementById('errorMessages').innerText = '';
-                    });
+                    // // Clear error messages when the modal is closed
+                    // $('#reserve-modal').on('hidden.bs.modal', function() {
+                    //     document.getElementById('errorMessages').innerText = '';
+                    // });
                 }
             </script>
 
@@ -165,14 +173,7 @@
         <!-- End Page content -->
         <!-- ============================================================== -->
 
-    </div>
+    
 </body>
 
-<footer class="footer footer-alt fw-medium">
-    <span class="text-dark-emphasis">
-        <script>
-            document.write(new Date().getFullYear())
-        </script> © Mehdi
-    </span>
-</footer>
 @endsection 

@@ -10,18 +10,19 @@ use Illuminate\Http\Request;
 class ClientController extends Controller
 {
     public function index (){
-        $books = Book::withTrashed()->get();
+        $books = Book::all();
         return view('client.dash', compact('books'));
     }
 
     public function store(Request $request){
+        
         $request->validate([
           'reservation_date' => 'required|date',
           'return_date' => 'nullable|date',
       ]);
       
       Reservation::create($request->all());
-      return redirect()->route('client.dash')->with('success','Reservation created successfully');
+      return redirect()->route('dash')->with('success','Reservation created successfully');
       
      }
   

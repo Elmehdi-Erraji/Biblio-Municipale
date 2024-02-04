@@ -36,7 +36,7 @@
                                     <i class="ri-book-2-line widget-icon"></i>
                                 </div>
                                 <h6 class="text-uppercase mt-0" title="Customers">Books</h6>
-                                <h2 class="my-2">err</h2>
+                                <h2 class="my-2">{{$count}}</h2>
 
                             </div>
                         </div>

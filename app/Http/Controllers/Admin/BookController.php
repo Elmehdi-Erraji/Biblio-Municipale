@@ -12,7 +12,8 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::withTrashed()->get();
-        return view('admin.books.index', compact('books'));
+        $count = Book::count();
+        return view('admin.books.index', compact('books','count'));
     }
     public function profil()
     {

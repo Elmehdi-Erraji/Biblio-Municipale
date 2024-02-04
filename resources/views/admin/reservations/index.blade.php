@@ -80,11 +80,11 @@
                                                         <td>
                                                             @php
                                                                 $returnStatus = $reservation->is_returned;
-                                                                if ($returnStatus === '0') {
+                                                                if ($returnStatus === 0) {
                                                                     echo '<span class="badge bg-warning-subtle text-warning">Pending</span>';
-                                                                } elseif ($returnStatus === '1') {
+                                                                } elseif ($returnStatus === 1) {
                                                                     echo '<span class="badge bg-pink-subtle text-pink">Not Returned</span>';
-                                                                } elseif ($returnStatus === '2') {
+                                                                } elseif ($returnStatus === 2) {
                                                                     echo '<span class="badge bg-info-subtle text-info">Returned</span>';
                                                                 } else {
                                                                     echo '<span class="badge bg-warning">Unknown Status</span>';
