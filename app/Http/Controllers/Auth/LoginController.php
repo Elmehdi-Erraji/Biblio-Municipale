@@ -40,9 +40,9 @@ class LoginController extends Controller
 
         switch ($userRole) {
             case 1:
-                return redirect()->route('users.index'); // Corrected route function
+                return redirect()->route('users.index'); 
             case 2:
-                return redirect()->route('dash'); // Corrected route function
+                return redirect()->route('dash'); 
             default:
                 Auth::logout();
                 return redirect('/login')->with('error', 'Something went wrong');

@@ -47,7 +47,7 @@ Auth::routes();
 //     return view('client.dash');
 // });
 
-Route::get('dash', [ClientController::class,'index']);
+Route::get('/dash', [ClientController::class,'index'])->name('dash');
 
-//  Route::resource('clients', ClientController::class);
+Route::resource('clients', ClientController::class);
  // Client rooutes end
