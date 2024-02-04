@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Reservation extends Model
 {
@@ -12,6 +13,8 @@ class Reservation extends Model
     protected $fillable = [
         'user_id', 'book_id', 'is_returned', 'reservation_date', 'return_date',
     ];
+
+    
 
     public function user()
     {

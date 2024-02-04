@@ -43,11 +43,10 @@ Auth::routes();
 
 
 // Client rooutes start
-//  Route::get('/dash',function(){
-//     return view('client.dash');
-// });
 
 Route::get('/dash', [ClientController::class,'index'])->name('dash');
 
 Route::resource('clients', ClientController::class);
+
+Route::get('/profile',[ClientController::class,'profile'])->name('profile');
  // Client rooutes end

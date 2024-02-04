@@ -11,7 +11,7 @@
                     <div class="collapse navbar-collapse" id="topnav-menu-content">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle arrow-none" href="" id="topnav-dashboards" role="button" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle arrow-none" href="{{route('dash')}}" id="topnav-dashboards" role="button" aria-haspopup="true" aria-expanded="false">
                                     <i class="ri-dashboard-3-line"></i> Books Collection
                                 </a>
                             </li>
@@ -26,7 +26,7 @@
                                         
                                    
                                  
-                                    <a href="" class="dropdown-item">Profile</a>
+                                    <a href="{{route('profile')}}" class="dropdown-item">Profile</a>
                                    
                                     
                                 </div>

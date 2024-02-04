@@ -73,8 +73,8 @@
                                                 @foreach ($reservations as $reservation)
                                                     <tr>
                                                         <td>{{ $reservation->id }}</td>
-                                                        <td>{{ $reservation->book_id }}</td>
-                                                        <td>{{ $reservation->user_id }}</td>
+                                                        <td>{{ $reservation->book->title }}</td>
+                                                        <td>{{ $reservation->user->name}}</td>
                                                         <td>{{ $reservation->reservation_date }}</td>
                                                         <td>{{ $reservation->return_date }}</td>
                                                         <td>

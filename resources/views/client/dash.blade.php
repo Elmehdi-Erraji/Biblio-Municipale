@@ -70,7 +70,7 @@
                                 @csrf
                             <input type="hidden" id="bookIdInput" name="bookId" value="">
                             <input type="hidden" id="" name="user_id" value="{{auth()->user()->id}}">
-                            <input type="hidden" id="" name="book_id" value="{{$book->id}}">
+                            <input type="hidden" id="bookIdInput" name="book_id" value="">
                             
                                 <div class="mb-3">
                                     <label for="reservationDate" class="form-label">Reservation Date</label>
@@ -95,7 +95,7 @@
                 </div>
             </div>
             <script>
-                function openModal(bookId,title, author, genre, description, publicationYear, totalCopies, availableCopies) {
+                function openModal(bookId, title, author, genre, description, publicationYear, totalCopies, availableCopies) {
                     document.getElementById('bookId').innerText = bookId;
                     document.getElementById('bookIdInput').value = bookId;
                     document.getElementById('bookTitle').innerText = title;
@@ -105,50 +105,11 @@
                     document.getElementById('bookPublicationYear').innerText = publicationYear;
                     document.getElementById('bookTotalCopies').innerText = totalCopies;
                     document.getElementById('bookAvailableCopies').innerText = availableCopies;
-
+            
+                    // Set the book_id value in the reservationForm
+                    document.getElementById('reservationForm').elements['book_id'].value = bookId;
+            
                     $('#reserve-modal').modal('show'); // Show the modal
-
-                    // // Handle reservation button click
-                    // document.getElementById('reserveButton').addEventListener('click', function() {
-                    //     const reservationDate = document.getElementById('reservationDate').value;
-                    //     const returnDate = document.getElementById('returnDate').value;
-
-                    //     // Perform date verification
-                    //     const today = new Date();
-                    //     const selectedResDate = new Date(reservationDate);
-                    //     const selectedRetDate = new Date(returnDate);
-
-                    //     // Check if reservation date is in the past
-                    //     if (selectedResDate < today) {
-                    //         document.getElementById('errorMessages').innerText = 'Please choose a reservation date in the future.';
-                    //         return;
-                    //     }
-
-                    //     // Check if return date is after reservation date
-                    //     if (selectedResDate >= selectedRetDate) {
-                    //         document.getElementById('errorMessages').innerText = 'Return date must be after the reservation date.';
-                    //         return;
-                    //     }
-
-                    //     // Calculate the difference in days between reservation and return dates
-                    //     const timeDiff = Math.abs(selectedRetDate - selectedResDate);
-                    //     const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-
-                    //     // Check if return date is beyond the limit (20 days)
-                    //     if (diffDays > 20) {
-                    //         document.getElementById('errorMessages').innerText = 'Return date exceeds the maximum limit of 20 days from the reservation date.';
-                    //         return;
-                    //     }
-
-                    //     // Here, you can proceed with the reservation process
-                    //     console.log('Reservation Date:', reservationDate);
-                    //     console.log('Return Date:', returnDate);
-                    // });
-
-                    // // Clear error messages when the modal is closed
-                    // $('#reserve-modal').on('hidden.bs.modal', function() {
-                    //     document.getElementById('errorMessages').innerText = '';
-                    // });
                 }
             </script>
 

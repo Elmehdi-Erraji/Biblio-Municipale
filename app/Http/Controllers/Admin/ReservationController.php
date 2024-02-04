@@ -29,6 +29,7 @@ class ReservationController extends Controller
     ]);
     
     Reservation::create($request->all());
+    
     return redirect()->route('client/dash')->with('success','Reservation created successfully');
     
    }
@@ -57,9 +58,21 @@ class ReservationController extends Controller
     }
 
     public function destroy(Reservation $reservation){
-        $reservation->delete();
+        // $reservation->delete();
 
-        return redirect()->route('reservations.index')->with('success','Reservation deleted successfully');
+        // return redirect()->route('reservations.index')->with('success','Reservation deleted successfully');
+        $roleId = auth()->user()->role;
+
+        // Delete the reservation
+        $reservation->delete();
     
+        // Redirect based on role_id
+        if ($roleId == 1) {
+            // Admin user
+            return redirect()->route('reservations.index')->with('success', 'Reservation deleted successfully');
+        } elseif ($roleId == 2) {
+            // Client user
+            return redirect()->route('profile')->with('success', 'Reservation deleted successfully');
+        }
     }
 }

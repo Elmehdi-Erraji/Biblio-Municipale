@@ -68,8 +68,9 @@
                     </div>
                     <!-- end col-->
                 </div>
-                <div class="row">
 
+
+                <div class="row">
 
                     <div class="col-12">
                         <!-- Todo-->
@@ -131,6 +132,7 @@
                                                         
                                                         <td>
                                                             <a href="{{route ('users.edit',$user->id)}}" class="btn btn-info">Update</a>
+                                                            
                                                             <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline-block;">
                                                                 @csrf
                                                                 @method('DELETE')
