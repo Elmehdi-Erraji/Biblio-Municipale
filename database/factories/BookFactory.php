@@ -24,7 +24,7 @@ class BookFactory extends Factory
             'published_at' => $this->faker->date,
             'totalCopies' => $this->faker->randomNumber(2),
             'availableCopies' => $this->faker->randomNumber(1),
-            'image' => 'placeholder_image.jpg', // You may replace this with a real image path
+            'image' => 'placeholder_image.jpg',
         ];
     }
 }

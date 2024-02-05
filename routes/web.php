@@ -1,12 +1,11 @@
 <?php
 
-use App\Http\Controllers\Client\ClientController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ReservationController;
-
+use App\Http\Controllers\Client\ClientController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,28 +24,20 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Admin rooutes start
+// Admin routes start
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('users', UserController::class);
+    Route::resource('books', BookController::class);
+    Route::post('books/{book}/restore', [BookController::class, 'restore'])->name('books.restore');
+    Route::resource('reservations', ReservationController::class);
+});
+// Admin routes end
 
-
- Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
- Route::resource('admin/users', UserController::class);
- 
- Route::resource('books', BookController::class);
-
- Route::post('books/{book}/restore', [BookController::class, 'restore'])->name('books.restore');
-
-
- Route::resource('admin/reservations', ReservationController::class);
-
-// Admin rooutes End
-
-
-// Client rooutes start
-
-Route::get('/dash', [ClientController::class,'index'])->name('dash');
-
-Route::resource('clients', ClientController::class);
-
-Route::get('/profile',[ClientController::class,'profile'])->name('profile');
- // Client rooutes end
+// Client routes start
+Route::middleware('auth')->group(function () {
+    Route::get('/dash', [ClientController::class, 'index'])->name('dash');
+    Route::resource('clients', ClientController::class);
+    Route::get('/profile', [ClientController::class, 'profile'])->name('profile');
+});
+// Client routes end
